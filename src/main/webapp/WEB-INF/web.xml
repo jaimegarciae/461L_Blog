@@ -35,13 +35,13 @@
   </servlet-mapping>
   
   <servlet>
-  	<servlet-name>cronjob</servlet-name>
+  	<servlet-name>sendUpdates</servlet-name>
   	<servlet-class>Blog.emailServlet</servlet-class>	
   </servlet>
   
   <servlet-mapping>
-  	<servlet-name>cronjob</servlet-name>
-  	<url-pattern>/cronjob</url-pattern>
+  	<servlet-name>sendUpdates</servlet-name>
+  	<url-pattern>/sendUpdates</url-pattern>
   </servlet-mapping>
   
   <servlet>

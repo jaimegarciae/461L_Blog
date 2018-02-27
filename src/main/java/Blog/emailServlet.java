@@ -19,15 +19,16 @@ public class emailServlet extends HttpServlet{
 	  ObjectifyService.register(BlogPost.class);
 	}
 	
-	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		Properties props = new Properties();
 		Session session = Session.getDefaultInstance(props, null);
 
 		try {
 		    Message msg = new MimeMessage(session);
-			msg.setFrom(new InternetAddress("jaime.garcia.echanove@gmail.com"));
-			
+			msg.setFrom(new InternetAddress("dailyupdate@blogmx-196500.appspotmail.com"));
+						
 			List<Subscriber> subscribers = ObjectifyService.ofy().load().type(Subscriber.class).list();
+			
 			for(Subscriber s : subscribers) {
 			  msg.addRecipient(Message.RecipientType.TO, new InternetAddress(s.getEmail()));
 			}
@@ -61,11 +62,12 @@ public class emailServlet extends HttpServlet{
 		return date.getTime() > (rightNow.getTime() - day);
 	}
 	
-	public void fillEmail(Message msg, List<BlogPost> blogPosts) {
+	public void fillEmail(Message msg, List<BlogPost> blogPosts){
 		StringBuilder emailContent = new StringBuilder();
 		for(BlogPost bp : blogPosts) {
-			String formatedPost = bp.getUserName() + "\n" + bp.getTitle() + "\n" + bp.getContent() + "\n";
+			String formatedPost = "@" + bp.getUserName() + "\n" + bp.getTitle() + "\n" + bp.getContent() + "\n";
 			emailContent.append(formatedPost);
+			emailContent.append("-------------------------------------------" + "\n");
 		}
 		try {
 			msg.setText(emailContent.toString());

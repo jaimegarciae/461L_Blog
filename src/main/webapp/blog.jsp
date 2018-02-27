@@ -18,9 +18,6 @@
   </head>
   
   <body>
-    <form action="/cronjob" method="post">
-        	<input class="button" type="submit" value="SendMails">
-    </form>
     <div class="container"> 
 	  <header>
 	    <ul class="blogMX_title"><li><a class="active" href="blog.jsp">BlogMX</a></li></ul>
