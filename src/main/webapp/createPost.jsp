@@ -1,5 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.Date" %>
 <%@ page import="java.util.Collections" %>
 <%@ page import="Blog.BlogPost" %>
 <%@ page import="com.googlecode.objectify.*" %>
@@ -8,22 +10,77 @@
 <%@ page import="com.google.appengine.api.users.UserServiceFactory" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=1024">
+    <title>blogMX: Write a Post</title>
+    <link href="css/blog.css" rel="stylesheet" type="text/css">
+  </head>
   <body>
-      <h1>Post to BlogMX</h1>
+    <div class="container"> 
+	  <header>
+	    <h4 class="blogMX_title">blogMX</h4>
+        <nav>
+          <ul class="menu">
+            <li><a href="blog.jsp">HOME</a></li>
+            <li><a href="allPosts.jsp">ALL POSTS</a></li>       
+	<%
+    UserService userService = UserServiceFactory.getUserService();
+    User user = userService.getCurrentUser();
+    if (user == null) {
+	%>
+	        <li><a href="<%= userService.createLoginURL(request.getRequestURI()) %>">SIGN IN</a></li>
+	      </ul>
+        </nav>
+      </header>
+      
+      <section class="cover" id="cover">
+        <p class="loggeduser">You must be signed in to post!</p>
+	<%
+    } else {
+    	pageContext.setAttribute("user", user);
+    %>
+    		<li><a class="active" href="createPost.jsp">WRITE A POST</a></li>
+    		<li><a href="<%= userService.createLogoutURL("blog.jsp") %>">SIGN OUT</a></li>
+    	  </ul>
+        </nav>
+      </header>
+      
+      <section class="cover" id="cover">
+      	<p class="loggeduser">Hello, ${fn:escapeXml(user.nickname)}!</p>     
+    <% 
+	}    
+    %>
+        <h2 class="Me">Mé<span class="xi">xi</span><span class="co">co</span></h2>
+        <p class="tagline">Place at the Center of the Moon</p>
+      </section>
+      
 	  <form action="/post" method="post">
-	  	<table>
-	  	  <tr>
-	    	<td><textarea name="postTitle" rows="1" cols="60"  placeholder="Your post's title"></textarea></td>
-	      </tr>
-	      <tr>
-			<td><textarea name="postContent" rows="3" cols="60" placeholder="Your post's content"></textarea></td>
-		  </tr>
+	  	<section class="post">
+	      <table class="post_table">
+	        <tr>
+		      <td class="post_colLeft"><input type="text" name="postTitle" class="post_title" placeholder="Your post's title"></td>
+		      <td class="post_colRight"><h3 class="post_date"><%= new SimpleDateFormat("MM/dd/yyyy").format(new Date()) %></h3></td>
+			</tr>
+		    <tr>
+		      <td class="post_colLeft"><h2 class="post_author">@${fn:escapeXml(user.nickname)}</h2></td>
+			  <td class="post_colRight"><textarea name="postContent" class="post_content" placeholder="Your post's content"></textarea></td></td>
+	        </tr>
+	      </table>
+        </section>
+	  	<table class="formbtn_table">
 		  <tr>
- 	  		<td><input type="submit" value="Post" ><input type="reset" value="Clear"></td>
+ 	  		<td><input class="button" type="reset" value="Clear"><input class="button" type="submit" value="Post"></td>
  	  	  </tr>
  	  	</table>
  	  </form>
- 	  <p>Click <a href="blog.jsp">here</a> to go back to the home page!</p>
+	
+      <div class="footer">
+	    <p class="copyright">&copy;2018 - <strong>blogMX</strong></p>
+	    <a class="unsuscribe" href="#unsuscribe">Unsuscribe</a>
+	  </div>
+    </div>
   </body>
 </html>
