@@ -45,7 +45,15 @@ public class BlogPost implements Comparable<BlogPost> {
     	String timeStamp = sdf.format(date); 
         return timeStamp;
     }
+    
+    public Date getDate() {
+    	return this.date;
+    }
 
+    public String getUserName() {
+    	return user.getNickname();
+    }
+    
     @Override
     public int compareTo(BlogPost other) {
         if (date.before(other.date)) {

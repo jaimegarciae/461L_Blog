@@ -57,7 +57,7 @@
       </section>
     <%
 	ObjectifyService.register(BlogPost.class);
-	List<BlogPost> blogPosts = ObjectifyService.ofy().load().type(BlogPost.class).list();   
+	List<BlogPost> blogPosts = ObjectifyService.ofy().load().type(BlogPost.class).list();
 	Collections.sort(blogPosts); 
 	int i = 0;
     for(BlogPost bp : blogPosts) {
