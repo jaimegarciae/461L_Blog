@@ -44,6 +44,26 @@
   	<url-pattern>/cronjob</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+  	<servlet-name>subscribe</servlet-name>
+  	<servlet-class>Blog.SubscribeServlet</servlet-class>	
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>subscribe</servlet-name>
+  	<url-pattern>/subscribe</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>unsubscribe</servlet-name>
+  	<servlet-class>Blog.UnsubscribeServlet</servlet-class>	
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>unsubscribe</servlet-name>
+  	<url-pattern>/unsubscribe</url-pattern>
+  </servlet-mapping>
+  
   <welcome-file-list>
     <welcome-file>blog.jsp</welcome-file>
   </welcome-file-list>

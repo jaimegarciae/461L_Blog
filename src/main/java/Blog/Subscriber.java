@@ -16,9 +16,9 @@ public class Subscriber{
 
     private Subscriber() {}
     
-    public Subscriber(User user, String email) {
+    public Subscriber(User user) {
         this.user = user;
-        this.email = email;
+        this.email = user.getEmail();
         this.blogName = Key.create(Blog.class, "default");
         this.id = (long) email.hashCode();
     }
