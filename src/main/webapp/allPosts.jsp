@@ -52,8 +52,17 @@
     <% 
 	}    
     %>
-        <h2 class="Me">Mé<span class="xi">xi</span><span class="co">co</span></h2>
-        <p class="tagline">Place at the Center of the Moon</p>
+        <table class="cover_table"><tr>
+		  <td><img class="cover_img" src="img/tulum.jpg"></td>
+		  <td><img class="cover_img" src="img/tacos.jpg"></td>
+		  <td class="cover_title">
+			<h2 class="Me">Mé<span class="xi">xi</span><span class="co">co</span></h2>
+    		<p class="tagline">Place at the Center of the Moon</p>
+		  </td>
+		  <td><img class="cover_img" src="img/oro-olimpico.jpg"></td>
+		  <td><img class="cover_img" src="img/bellas-artes.jpg"></td>
+	  	</tr></table>
+	  	<p class="cover_description">A blog on your favorite memories from Mexico</p>
       </section>
     <%
 	ObjectifyService.register(BlogPost.class);

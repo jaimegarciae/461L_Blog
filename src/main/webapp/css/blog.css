@@ -53,7 +53,7 @@ ul li a {
 	display: block;
 	color: #FFFFFF;
 	text-decoration: none;
-	transition: all 0.3s linear;
+	transition: color 0.3s linear, background-color 0.3s linear;
 }
 ul li:hover a {
 	color: #CE1126;
@@ -77,6 +77,19 @@ ul li:hover a {
 	color: #FFFFFF;
 	text-align: right;
 }
+.cover_table{
+	width: 100%;
+}
+.cover_img {
+	margin: 0px 15px 15px 15px;
+	width: 150px;
+	height: 90px;
+	border: 2px solid #006847;
+	border-radius: 10px;
+}
+.cover_title {
+	text-align: center;
+}
 .Me {
 	margin-top: 0;
 	color: #006847;
@@ -93,6 +106,10 @@ ul li:hover a {
 	color: #FFFFFF;
 	text-transform: lowercase;
 	font-style: italic;
+}
+.cover_description {
+	color: #FFFFFF;
+	margin-top: 0px;
 }
 .post {
 	background-color: #FFFFFF;
@@ -173,7 +190,7 @@ ul li:hover a {
 	border: 3px solid #FFFFFF;
 	color: #FFFFFF;
 	background-color: #BC2F44;
-	transition: all 0.3s linear;
+	transition: color 0.3s linear, background-color 0.3s linear, border-color 0.3s linear;
 }
 .suscribe_banner {
 	background-color: #3D3D3D;
