@@ -19,7 +19,7 @@ public class emailServlet extends HttpServlet{
 	  ObjectifyService.register(BlogPost.class);
 	}
 	
-	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		Properties props = new Properties();
 		Session session = Session.getDefaultInstance(props, null);
 

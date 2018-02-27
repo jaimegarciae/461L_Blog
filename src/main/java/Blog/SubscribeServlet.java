@@ -41,7 +41,7 @@ public class SubscribeServlet extends HttpServlet {
 	      Message msg = new MimeMessage(session);
 		  msg.setFrom(new InternetAddress("jaime.garcia.echanove@gmail.com"));
 		  msg.addRecipient(Message.RecipientType.TO, new InternetAddress(s.getEmail()));
-		  msg.setSubject("Your daily BlogMX update");
+		  msg.setSubject("Your BlogMX Subscription");
 		  msg.setText("Thank you for subscribing to BlogMX! You will recieve an update email every day with the latest posts.");
 		  Transport.send(msg);
 		} catch (Exception e) {

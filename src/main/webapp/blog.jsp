@@ -18,6 +18,9 @@
   </head>
   
   <body>
+    <form action="/cronjob" method="post">
+        	<input class="button" type="submit" value="SendMails">
+    </form>
     <div class="container"> 
 	  <header>
 	    <h4 class="blogMX_title">blogMX</h4>
@@ -85,12 +88,16 @@
       
       <section class="suscribe_banner">
         <p class="suscribe_invitation">Keep updated with the latest posts!</p>
-        <div class="button" href="/subscribe">subscribe</div>
+        <form action="/subscribe" method="post">
+        	<input class="button" type="submit" value="Subscribe">
+        </form>
       </section>
 	
       <div class="footer">
-	    <p class="copyright">&copy;2018 - <strong>blogMX</strong></p>
-	    <a class="unsuscribe" href="/unsubscribe">Unsuscribe</a>
+      	<p class="copyright">&copy;2018 - <strong>blogMX</strong></p>
+        <form action="/unsubscribe" method="post">
+        	<input class="unsubscribe" type="submit" value="Unsubscribe">
+        </form>
 	  </div>
     </div>
   </body>
