@@ -13,6 +13,12 @@ import javax.servlet.http.*;
 import com.googlecode.objectify.ObjectifyService;
 
 public class emailServlet extends HttpServlet{
+	
+	static {
+	  ObjectifyService.register(Subscriber.class);
+	  ObjectifyService.register(BlogPost.class);
+	}
+	
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		Properties props = new Properties();
 		Session session = Session.getDefaultInstance(props, null);
@@ -21,16 +27,13 @@ public class emailServlet extends HttpServlet{
 		    Message msg = new MimeMessage(session);
 			msg.setFrom(new InternetAddress("jaime.garcia.echanove@gmail.com"));
 			
-			ObjectifyService.register(Subscriber.class);
 			List<Subscriber> subscribers = ObjectifyService.ofy().load().type(Subscriber.class).list();
-			
 			for(Subscriber s : subscribers) {
-			  msg.addRecipient(Message.RecipientType.TO, new InternetAddress(req.getParameter(s.getEmail())));
+			  msg.addRecipient(Message.RecipientType.TO, new InternetAddress(s.getEmail()));
 			}
 			
 			msg.setSubject("Your daily BlogMX update");
 			  
-			ObjectifyService.register(BlogPost.class);
 			List<BlogPost> blogPosts = ObjectifyService.ofy().load().type(BlogPost.class).list();
 			Collections.sort(blogPosts); 
 			filterPosts(blogPosts);

@@ -94,12 +94,12 @@
       
       <section class="suscribe_banner">
         <p class="suscribe_invitation">Keep updated with the latest posts!</p>
-        <div class="button">subscribe</div>
+        <div class="button" href="/subscribe">subscribe</div>
       </section>
 	
       <div class="footer">
 	    <p class="copyright">&copy;2018 - <strong>blogMX</strong></p>
-	    <a class="unsuscribe" href="#unsuscribe">Unsuscribe</a>
+	    <a class="unsuscribe" href="/unsubscribe">Unsuscribe</a>
 	  </div>
     </div>
   </body>
