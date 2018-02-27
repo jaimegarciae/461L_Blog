@@ -10,39 +10,11 @@
 
 <html>
   <body>
-	<%
-    UserService userService = UserServiceFactory.getUserService();
-    User user = userService.getCurrentUser();
-    if (user != null) {
-      pageContext.setAttribute("user", user);
-	%>
-	  <p>Hello, ${fn:escapeXml(user.nickname)}! (You can
-	  <a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">sign out</a>.)</p>
-
-	  <form action="/post" method="post">
-	  	<table>
-	  	  <tr>
-	    	<td><textarea name="postTitle" rows="1" cols="60"  placeholder="Your post's title"></textarea></td>
-	      </tr>
-	      <tr>
-			<td><textarea name="postContent" rows="3" cols="60" placeholder="Your post's content"></textarea></td>
-		  </tr>
-		  <tr>
- 	  		<td><input type="submit" value="Post" ><input type="reset" value="Clear"></td>
- 	  	  </tr>
- 	  	</table>
- 	  </form>
-	<%
-    } else {
-	%>
-	  <p><a href="<%= userService.createLoginURL(request.getRequestURI()) %>">Sign in</a>
-	  to post to the blog.</p>
-	<% 
-	}
+    <p>Click <a href="blog.jsp">here</a> to go back to the home page!</p>
+    <%
 	ObjectifyService.register(BlogPost.class);
 	List<BlogPost> blogPosts = ObjectifyService.ofy().load().type(BlogPost.class).list();   
 	Collections.sort(blogPosts); 
-	int i = 0;
     for(BlogPost bp : blogPosts) {
       pageContext.setAttribute("postTitle", bp.getTitle());
       pageContext.setAttribute("postContent", bp.getContent());
@@ -53,9 +25,6 @@
         <blockquote><b>${fn:escapeXml(postTitle)}</b></blockquote>
         <blockquote>${fn:escapeXml(postContent)}</blockquote>
       <%
-      i++;
-      if(i == 5) break;
     } %>
-    <p>Click <a href="allPosts.jsp">here</a> to view all posts!</p>
   </body>
 </html>
