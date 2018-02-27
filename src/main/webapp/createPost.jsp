@@ -21,10 +21,9 @@
   <body>
     <div class="container"> 
 	  <header>
-	    <h4 class="blogMX_title">blogMX</h4>
+	    <ul class="blogMX_title"><li><a href="blog.jsp">BlogMX</a></li></ul>
         <nav>
           <ul class="menu">
-            <li><a href="blog.jsp">HOME</a></li>
             <li><a href="allPosts.jsp">ALL POSTS</a></li>       
 	<%
     UserService userService = UserServiceFactory.getUserService();

@@ -20,10 +20,9 @@
   <body>
     <div class="container"> 
 	  <header>
-	    <h4 class="blogMX_title">blogMX</h4>
+	    <ul class="blogMX_title"><li><a href="blog.jsp">BlogMX</a></li></ul>
         <nav>
           <ul class="menu">
-            <li><a href="blog.jsp">HOME</a></li>
             <li><a class="active" href="allPosts.jsp">ALL POSTS</a></li>       
 	<%
     UserService userService = UserServiceFactory.getUserService();
@@ -87,16 +86,10 @@
 	        </table>
           </section>
       <%
-    } %>
-      
-      <section class="suscribe_banner">
-        <p class="suscribe_invitation">Keep updated with the latest posts!</p>
-        <div class="button">subscribe</div>
-      </section>
-	
+    } %>      
       <div class="footer">
 	    <p class="copyright">&copy;2018 - <strong>blogMX</strong></p>
-	    <a class="unsuscribe" href="#unsuscribe">Unsuscribe</a>
+	    <a class="unsuscribe" href="/unsubscribe">Unsuscribe</a>
 	  </div>
     </div>
   </body>

@@ -24,11 +24,11 @@ nav {
 	text-align: right;
 }
 .blogMX_title {
+	list-style: none;
 	color: #fff;
 	font-weight: bold;
 	float: left;
-	margin-top: 15px;
-	margin-left: 25px;
+	margin: 0;
 	letter-spacing: 4px;
 }
 menu, .active {
@@ -71,6 +71,7 @@ ul li:hover a {
 .loggeduser {
 	margin: 0;
 	padding-right: 16px;
+	padding-bottom: 10px;
 	font-size: 15px;
 	letter-spacing: normal;
 	text-transform: none;
