@@ -21,10 +21,9 @@
   <body>
     <div class="container"> 
 	  <header>
-	    <h4 class="blogMX_title">blogMX</h4>
+	    <ul class="blogMX_title"><li><a href="blog.jsp">BlogMX</a></li></ul>
         <nav>
           <ul class="menu">
-            <li><a href="blog.jsp">HOME</a></li>
             <li><a href="allPosts.jsp">ALL POSTS</a></li>       
 	<%
     UserService userService = UserServiceFactory.getUserService();
@@ -53,8 +52,17 @@
     <% 
 	}    
     %>
-        <h2 class="Me">Mé<span class="xi">xi</span><span class="co">co</span></h2>
-        <p class="tagline">Place at the Center of the Moon</p>
+        <table class="cover_table"><tr>
+		  <td><img class="cover_img" src="img/tulum.jpg"></td>
+		  <td><img class="cover_img" src="img/tacos.jpg"></td>
+		  <td class="cover_title">
+			<h2 class="Me">Mé<span class="xi">xi</span><span class="co">co</span></h2>
+    		<p class="tagline">Place at the Center of the Moon</p>
+		  </td>
+		  <td><img class="cover_img" src="img/oro-olimpico.jpg"></td>
+		  <td><img class="cover_img" src="img/bellas-artes.jpg"></td>
+	  	</tr></table>
+	  	<p class="cover_description">A blog on your favorite memories from Mexico</p>
       </section>
       
 	  <form action="/post" method="post">
