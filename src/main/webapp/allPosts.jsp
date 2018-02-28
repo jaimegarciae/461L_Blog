@@ -89,7 +89,6 @@
     } %>      
       <div class="footer">
 	    <p class="copyright">&copy;2018 - <strong>blogMX</strong></p>
-	    <a class="unsuscribe" href="/unsubscribe">Unsuscribe</a>
 	  </div>
     </div>
   </body>

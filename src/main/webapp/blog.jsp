@@ -2,6 +2,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Collections" %>
 <%@ page import="Blog.BlogPost" %>
+<%@ page import="Blog.Subscriber" %>
 <%@ page import="com.googlecode.objectify.*" %>
 <%@ page import="com.google.appengine.api.users.User" %>
 <%@ page import="com.google.appengine.api.users.UserService" %>
@@ -18,39 +19,37 @@
   </head>
   
   <body>
-    <div class="container"> 
-	  <header>
-	    <ul class="blogMX_title"><li><a class="active" href="blog.jsp">BlogMX</a></li></ul>
-        <nav>
-          <ul class="menu">
-            <li><a href="allPosts.jsp">ALL POSTS</a></li>       
+    <div class="container">     
 	<%
     UserService userService = UserServiceFactory.getUserService();
     User user = userService.getCurrentUser();
+    ObjectifyService.register(Subscriber.class);
+    List<Subscriber> subscribers = ObjectifyService.ofy().load().type(Subscriber.class).list();
+    boolean subscribed = false;
+    
+    if(subscribers != null) {
+    	for(Subscriber s : subscribers) {
+			if(s.getEmail().equals(user.getEmail())) {
+				subscribed = true;
+				break;
+			}
+		}
+    }
+    
     if (user == null) {
 	%>
+      <header>
+	    <ul class="blogMX_title"><li><a class="active" href="blog.jsp">BlogMX</a></li></ul>
+        <nav>
+          <ul class="menu">
+            <li><a href="allPosts.jsp">ALL POSTS</a></li>   
 	        <li><a href="<%= userService.createLoginURL(request.getRequestURI()) %>">SIGN IN</a></li>
 	      </ul>
         </nav>
       </header>
       
       <section class="cover" id="cover">
-        <p class="loggeduser">You must be signed in to post!</p>
-	<%
-    } else {
-    	pageContext.setAttribute("user", user);
-    %>
-    		<li><a href="createPost.jsp">WRITE A POST</a></li>
-    		<li><a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">SIGN OUT</a></li>
-    	  </ul>
-        </nav>
-      </header>
-      
-      <section class="cover" id="cover">
-      	<p class="loggeduser">Hello, ${fn:escapeXml(user.nickname)}!</p>     
-    <% 
-	}    
-    %>
+        <p class="loggeduser">You must be signed in to post!</p>      
         <table class="cover_table"><tr>
 		  <td><img class="cover_img" src="img/tulum.jpg"></td>
 		  <td><img class="cover_img" src="img/tacos.jpg"></td>
@@ -63,7 +62,53 @@
 	  	</tr></table>
 	  	<p class="cover_description">A blog on your favorite memories from Mexico</p>
       </section>
+      
+      <section class="suscribe_banner">
+        <p class="suscribe_invitation">Sign in to subscribe and keep updated with the latest posts!</p>
+      </section>
+
+	<%
+    } else {
+      pageContext.setAttribute("user", user);
+    %>
+      <header>
+	    <ul class="blogMX_title"><li><a class="active" href="blog.jsp">BlogMX</a></li></ul>
+        <nav>
+          <ul class="menu">
+            <li><a href="allPosts.jsp">ALL POSTS</a></li>   
+    		<li><a href="createPost.jsp">WRITE A POST</a></li>
+    		<li><a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">SIGN OUT</a></li>
+    	  </ul>
+        </nav>
+      </header>
+      
+      <section class="cover" id="cover">
+      	<p class="loggeduser">Hello, ${fn:escapeXml(user.nickname)}!</p>
+      	 <table class="cover_table"><tr>
+		  <td><img class="cover_img" src="img/tulum.jpg"></td>
+		  <td><img class="cover_img" src="img/tacos.jpg"></td>
+		  <td class="cover_title">
+			<h2 class="Me">Mé<span class="xi">xi</span><span class="co">co</span></h2>
+    		<p class="tagline">Place at the Center of the Moon</p>
+		  </td>
+		  <td><img class="cover_img" src="img/oro-olimpico.jpg"></td>
+		  <td><img class="cover_img" src="img/bellas-artes.jpg"></td>
+	  	</tr></table>
+	  	<p class="cover_description">A blog on your favorite memories from Mexico</p>
+      </section>
+    <% 
+	  if (!subscribed) {		
+	%>
+      <section class="suscribe_banner">
+        <p class="suscribe_invitation">Keep updated with the latest posts!</p>
+        <form action="/subscribe" method="post">
+        	<input class="button" type="submit" value="Subscribe">
+        </form>
+      </section>
     <%
+      }
+    }
+    
 	ObjectifyService.register(BlogPost.class);
 	List<BlogPost> blogPosts = ObjectifyService.ofy().load().type(BlogPost.class).list();
 	Collections.sort(blogPosts); 
@@ -89,20 +134,24 @@
       <%
       i++;
       if(i == 5) break;
-    } %>
-      
-      <section class="suscribe_banner">
-        <p class="suscribe_invitation">Keep updated with the latest posts!</p>
-        <form action="/subscribe" method="post">
-        	<input class="button" type="submit" value="Subscribe">
-        </form>
-      </section>
-	
+    }
+    %>
+    	
       <div class="footer">
       	<p class="copyright">&copy;2018 - <strong>blogMX</strong></p>
+    <%
+    if (user == null) {
+    %>
+    	<p class="unsubscribe_login">Sign in if you wish to unsubscribe</p>
+   	<%
+    } else if (subscribed) {
+    %>
         <form action="/unsubscribe" method="post">
         	<input class="unsubscribe" type="submit" value="Unsubscribe">
         </form>
+    <%
+    }
+    %>
 	  </div>
     </div>
   </body>
