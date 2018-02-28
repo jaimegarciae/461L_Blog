@@ -41,7 +41,7 @@ public class BlogPost implements Comparable<BlogPost> {
 
     public String getTimestamp() {
     	SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy h:mm a");
-		sdf.setTimeZone(TimeZone.getTimeZone("CST"));
+		sdf.setTimeZone(TimeZone.getTimeZone("America/Chicago"));
     	String timeStamp = sdf.format(date); 
         return timeStamp;
     }

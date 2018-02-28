@@ -30,7 +30,7 @@ public class emailServlet extends HttpServlet{
 			List<Subscriber> subscribers = ObjectifyService.ofy().load().type(Subscriber.class).list();
 			
 			for(Subscriber s : subscribers) {
-			  msg.addRecipient(Message.RecipientType.TO, new InternetAddress(s.getEmail()));
+			  msg.addRecipient(Message.RecipientType.BCC, new InternetAddress(s.getEmail()));
 			}
 			
 			msg.setSubject("Your daily BlogMX update");

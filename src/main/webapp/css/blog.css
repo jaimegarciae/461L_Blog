@@ -206,12 +206,14 @@ ul li:hover a {
 	border-color: #CE1126;
 }
 .footer {
-	height: 17px;
+	width: 100%;
+	height: 20px;
 	padding: 5px;
 	background-color: #006847;
 	color: #FFFFFF;
 	text-transform: uppercase;
 	letter-spacing: 2px;
+	vertical-align: middle;
 }
 .copyright {
 	float: left;
@@ -223,4 +225,21 @@ ul li:hover a {
 	text-align: right;
 	margin: 0;
 	text-transform: lowercase;
+}
+.unsubscribe {
+	float: right;
+	padding: 2px;
+	text-align: center;
+	text-transform: lowercase;
+	font-weight: bold;
+	border: 1px solid #FFFFFF;
+	color: #FFFFFF;
+	background-color: #BC2F44;
+	transition: color 0.3s linear, background-color 0.3s linear, border-color 0.3s linear;
+}
+.unsubscribe:hover {
+	background-color: #006847;
+	color: #FFFFFF;
+	cursor: pointer;
+	border-color: #CE1126;
 }

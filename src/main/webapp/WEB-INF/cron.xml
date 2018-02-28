@@ -4,6 +4,6 @@
     <url>/sendUpdates</url>
     <description>daily blog update</description>
     <schedule>every day 17:00</schedule>
-    <timezone>CST</timezone>
+    <timezone>America/Chicago</timezone>
   </cron>
 </cronentries>

@@ -27,7 +27,7 @@
     List<Subscriber> subscribers = ObjectifyService.ofy().load().type(Subscriber.class).list();
     boolean subscribed = false;
     
-    if(subscribers != null) {
+    if(subscribers != null && user != null) {
     	for(Subscriber s : subscribers) {
 			if(s.getEmail().equals(user.getEmail())) {
 				subscribed = true;
@@ -137,21 +137,23 @@
     }
     %>
     	
-      <div class="footer">
-      	<p class="copyright">&copy;2018 - <strong>blogMX</strong></p>
+      <div>
+      	<table class="footer"><tr>
+      	<td><p class="copyright">&copy;2018 - <strong>blogMX</strong></p></td>
     <%
     if (user == null) {
     %>
-    	<p class="unsubscribe_login">Sign in if you wish to unsubscribe</p>
+    	<td><p class="unsubscribe_login">Sign in if you wish to unsubscribe</p></td>
    	<%
     } else if (subscribed) {
     %>
-        <form action="/unsubscribe" method="post">
+        <td><form action="/unsubscribe" method="post">
         	<input class="unsubscribe" type="submit" value="Unsubscribe">
-        </form>
+        </form></td>
     <%
     }
     %>
+    	</tr></table>
 	  </div>
     </div>
   </body>

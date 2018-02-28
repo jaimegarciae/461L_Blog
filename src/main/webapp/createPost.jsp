@@ -85,8 +85,10 @@
  	  	</table>
  	  </form>
 	
-      <div class="footer">
-	    <p class="copyright">&copy;2018 - <strong>blogMX</strong></p>
+      <div>
+	    <table class="footer"><tr>
+      		<td><p class="copyright">&copy;2018 - <strong>blogMX</strong></p></td>
+      	</tr></table>
 	  </div>
     </div>
   </body>
