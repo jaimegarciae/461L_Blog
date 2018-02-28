@@ -23,7 +23,7 @@ public class emailServlet extends HttpServlet{
 		Properties props = new Properties();
 		Session session = Session.getDefaultInstance(props, null);
 
-		try {
+        try {
 		    Message msg = new MimeMessage(session);
 			msg.setFrom(new InternetAddress("dailyupdate@blogmx-196500.appspotmail.com"));
 						
@@ -39,13 +39,14 @@ public class emailServlet extends HttpServlet{
 			Collections.sort(blogPosts); 
 			filterPosts(blogPosts);
 			
-			fillEmail(msg, blogPosts);
-			
-			Transport.send(msg);
-			
-			} catch (Exception e) {
-				e.printStackTrace();
+			if(!blogPosts.isEmpty()) {
+			  fillEmail(msg, blogPosts);
+			  Transport.send(msg);
 			}
+			
+        }catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void filterPosts(List<BlogPost> blogPosts) {
