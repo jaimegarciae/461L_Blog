@@ -83,6 +83,13 @@
 		        <td class="post_colLeft"><h2 class="post_author">@${fn:escapeXml(postUser.nickname)}</h2></td>
 			    <td class="post_colRight"><p class="post_content">${fn:escapeXml(postContent)}</p></td>
 	          </tr>
+	          <tr>
+	          	<td><input type="text" name="shareEmail" class="share_email" placeholder="Recipient's email">
+	          	<form action="/share" method="post">
+        			<input class="share" type="submit" value="Share">
+        		</form>
+        		</td>
+	          </tr>
 	        </table>
           </section>
       <%

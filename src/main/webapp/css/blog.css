@@ -226,6 +226,23 @@ ul li:hover a {
 	margin: 0;
 	text-transform: lowercase;
 }
+.share {
+	float: right;
+	padding: 2px;
+	text-align: center;
+	text-transform: lowercase;
+	font-weight: bold;
+	border: 1px solid #FFFFFF;
+	color: #FFFFFF;
+	background-color: #BC2F44;
+	transition: color 0.3s linear, background-color 0.3s linear, border-color 0.3s linear;
+}
+.share:hover {
+	background-color: #006847;
+	color: #FFFFFF;
+	cursor: pointer;
+	border-color: #CE1126;
+}
 .unsubscribe {
 	float: right;
 	padding: 2px;

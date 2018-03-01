@@ -55,6 +55,16 @@
   </servlet-mapping>
   
   <servlet>
+  	<servlet-name>share</servlet-name>
+  	<servlet-class>Blog.ShareServlet</servlet-class>	
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>share</servlet-name>
+  	<url-pattern>/share</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
   	<servlet-name>unsubscribe</servlet-name>
   	<servlet-class>Blog.UnsubscribeServlet</servlet-class>	
   </servlet>
