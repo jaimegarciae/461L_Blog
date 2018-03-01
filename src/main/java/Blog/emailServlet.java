@@ -6,6 +6,8 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
+import java.util.logging.Logger;
+
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
@@ -19,13 +21,15 @@ public class emailServlet extends HttpServlet{
 	  ObjectifyService.register(BlogPost.class);
 	}
 	
+    private static final Logger log = Logger.getLogger(emailServlet.class.getName());
+
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		Properties props = new Properties();
 		Session session = Session.getDefaultInstance(props, null);
 
         try {
 		    Message msg = new MimeMessage(session);
-			msg.setFrom(new InternetAddress("dailyupdate@ee461l-blog-mx.appspotmail.com"));
+			msg.setFrom(new InternetAddress("dailyupdate@blogmx-196500.appspotmail.com"));
 						
 			List<Subscriber> subscribers = ObjectifyService.ofy().load().type(Subscriber.class).list();
 			
@@ -37,11 +41,14 @@ public class emailServlet extends HttpServlet{
 			  
 			List<BlogPost> blogPosts = ObjectifyService.ofy().load().type(BlogPost.class).list();
 			Collections.sort(blogPosts); 
-			filterPosts(blogPosts);
+			List<BlogPost> latestPosts  = filterPosts(blogPosts);
 			
-			if(!blogPosts.isEmpty()) {
-			  fillEmail(msg, blogPosts);
+			if(!latestPosts.isEmpty()) {
+			  fillEmail(msg, latestPosts);
 			  Transport.send(msg);
+			  log.info("email sent to subscribers");
+			} else {
+				log.info("No posts made in last 24 hours, no email sent");
 			}
 			
         }catch (Exception e) {
@@ -49,17 +56,24 @@ public class emailServlet extends HttpServlet{
 		}
 	}
 	
-	public void filterPosts(List<BlogPost> blogPosts) {
+	public ArrayList<BlogPost> filterPosts(List<BlogPost> blogPosts) {
 		List<BlogPost> latestPosts = new ArrayList<BlogPost>();
 		for(BlogPost bp : blogPosts) {
-			if(lastDay(bp.getDate())) latestPosts.add(bp);
+			log.info("Post being checked: " + bp.getTitle() + " made on " + bp.getTimestamp());
+			if(lastDay(bp.getDate())) {
+				latestPosts.add(bp);
+				log.info("Post added: " + bp.getTitle() + " made on " + bp.getTimestamp());
+			}
 		}
-		blogPosts = latestPosts;
+		return (ArrayList<BlogPost>) latestPosts;
 	}
 	
 	public boolean lastDay(Date date) {
 		long day = 24 * 60 * 60 * 1000;
 		Date rightNow = new Date();
+		log.info("Right now: " + rightNow.getTime() + "\n"
+				+ "Post made:" + date.getTime() + "\n"
+				+ "lastDay:" + (date.getTime() > (rightNow.getTime() - day)));
 		return date.getTime() > (rightNow.getTime() - day);
 	}
 	
