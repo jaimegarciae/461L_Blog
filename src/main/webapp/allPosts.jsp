@@ -35,7 +35,7 @@
       </header>
       
       <section class="cover" id="cover">
-        <p class="loggeduser">You must be signed in to post!</p>
+        <p class="loggeduser">You must be signed in to post and share posts!</p>
 	<%
     } else {
     	pageContext.setAttribute("user", user);

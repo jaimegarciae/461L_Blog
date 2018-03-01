@@ -49,7 +49,7 @@
       </header>
       
       <section class="cover" id="cover">
-        <p class="loggeduser">You must be signed in to post!</p>      
+        <p class="loggeduser">You must be signed in to post and share posts!</p>      
         <table class="cover_table"><tr>
 		  <td><img class="cover_img" src="img/tulum.jpg"></td>
 		  <td><img class="cover_img" src="img/tacos.jpg"></td>
