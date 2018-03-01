@@ -39,7 +39,7 @@ public class SubscribeServlet extends HttpServlet {
 		Session session = Session.getDefaultInstance(props, null);
 		try {
 	      Message msg = new MimeMessage(session);
-		  msg.setFrom(new InternetAddress("subscribe@ee461l-blog-mx.appspotmail.com"));
+		  msg.setFrom(new InternetAddress("subscribe@blogmx-196500.appspotmail.com"));
 		  msg.addRecipient(Message.RecipientType.TO, new InternetAddress(s.getEmail()));
 		  msg.setSubject("Your BlogMX Subscription");
 		  msg.setText("Thank you for subscribing to BlogMX! You will recieve an update email every day with the latest posts.");
