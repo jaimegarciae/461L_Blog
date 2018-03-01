@@ -83,13 +83,21 @@
 		        <td class="post_colLeft"><h2 class="post_author">@${fn:escapeXml(postUser.nickname)}</h2></td>
 			    <td class="post_colRight"><p class="post_content">${fn:escapeXml(postContent)}</p></td>
 	          </tr>
+	  <%
+	  if (user != null) {
+	  %>
 	          <tr>
-	          	<td><input type="text" name="shareEmail" class="share_email" placeholder="Recipient's email">
-	          	<form action="/share" method="post">
-        			<input class="share" type="submit" value="Share">
-        		</form>
+	          	<td>
+		          <form action="/share" method="post">
+		          	<input type="text" name="shareEmail" class="share_email" placeholder="Recipient's email">
+	        		<input type="hidden" name="shareTitle" value="${fn:escapeXml(postTitle)}">
+	        		<input type="hidden" name="shareAuthor" value="@${fn:escapeXml(postUser.nickname)}">
+	        		<input type="hidden" name="shareContent" value="${fn:escapeXml(postContent)}">
+	        		<input class="share" type="submit" value="Share">
+	        	  </form>
         		</td>
 	          </tr>
+	  <% } %>
 	        </table>
           </section>
       <%
