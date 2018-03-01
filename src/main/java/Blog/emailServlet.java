@@ -25,7 +25,7 @@ public class emailServlet extends HttpServlet{
 
         try {
 		    Message msg = new MimeMessage(session);
-			msg.setFrom(new InternetAddress("dailyupdate@blogmx-196500.appspotmail.com"));
+			msg.setFrom(new InternetAddress("dailyupdate@ee461l-blog-mx.appspotmail.com"));
 						
 			List<Subscriber> subscribers = ObjectifyService.ofy().load().type(Subscriber.class).list();
 			

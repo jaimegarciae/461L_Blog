@@ -3,7 +3,7 @@
   <cron>
     <url>/sendUpdates</url>
     <description>daily blog update</description>
-    <schedule>every day 17:00</schedule>
+    <schedule>every day 18:25</schedule>
     <timezone>America/Chicago</timezone>
   </cron>
 </cronentries>

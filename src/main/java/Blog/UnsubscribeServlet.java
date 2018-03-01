@@ -56,7 +56,7 @@ public class UnsubscribeServlet extends HttpServlet {
 		Session session = Session.getDefaultInstance(props, null);
 		try {
 	      Message msg = new MimeMessage(session);
-		  msg.setFrom(new InternetAddress("unsubscribe@blogmx-196500.appspotmail.com"));
+		  msg.setFrom(new InternetAddress("unsubscribe@ee461l-blog-mx.appspotmail.com"));
 		  msg.addRecipient(Message.RecipientType.TO, new InternetAddress(userEmail));
 		  msg.setSubject("Your BlogMX Subscription");
 		  msg.setText("You have now unsubscribed from BlogMX. You won't be recieving any update emails anymore.");
