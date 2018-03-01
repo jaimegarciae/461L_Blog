@@ -31,7 +31,7 @@ public class ShareServlet extends HttpServlet{
 		
         try {
 		    Message msg = new MimeMessage(session);
-			msg.setFrom(new InternetAddress("shareposts@blogmx-196500.appspotmail.com"));
+			msg.setFrom(new InternetAddress("shareposts@ee461l-blog-mx.appspotmail.com"));
 			msg.addRecipient(Message.RecipientType.BCC, new InternetAddress(sendTo));
 			msg.setSubject(user.getNickname() + " shared a BlogMX post with you!");
 			  
