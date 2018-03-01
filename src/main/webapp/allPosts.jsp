@@ -87,13 +87,13 @@
 	  if (user != null) {
 	  %>
 	          <tr>
-	          	<td>
+	          	<td class="share_cell" colspan="2">
 		          <form action="/share" method="post">
-		          	<input type="text" name="shareEmail" class="share_email" placeholder="Recipient's email">
+		          	<input type="text" name="shareEmail" class="share_email" placeholder="Type email to share">
 	        		<input type="hidden" name="shareTitle" value="${fn:escapeXml(postTitle)}">
-	        		<input type="hidden" name="shareAuthor" value="@${fn:escapeXml(postUser.nickname)}">
+	        		<input type="hidden" name="shareAuthor" value="${fn:escapeXml(postUser.nickname)}">
 	        		<input type="hidden" name="shareContent" value="${fn:escapeXml(postContent)}">
-	        		<input class="share" type="submit" value="Share">
+	        		<input class="share_submit" type="submit" value="Share">
 	        	  </form>
         		</td>
 	          </tr>

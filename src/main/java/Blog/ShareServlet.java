@@ -17,7 +17,7 @@ import com.google.appengine.api.users.UserServiceFactory;
 
 public class ShareServlet extends HttpServlet{
 	
-	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		UserService userService = UserServiceFactory.getUserService();
 	    User user = userService.getCurrentUser();
 	    
@@ -48,5 +48,6 @@ public class ShareServlet extends HttpServlet{
         }catch (Exception e) {
 			e.printStackTrace();
 		}
+        resp.sendRedirect("/blog.jsp");
 	}
 }
